@@ -235,6 +235,22 @@ function formatProduct(row) {
 
 // ---------------- API ROUTES ----------------
 
+// Root endpoint welcome response
+app.get(['/', '/api'], (req, res) => {
+  res.json({
+    message: '🚀 REST API Backend is live and operational!',
+    health: '/api/health',
+    endpoints: {
+      health: 'GET /api/health',
+      authRegister: 'POST /api/auth/register',
+      authLogin: 'POST /api/auth/login',
+      authMe: 'GET /api/auth/me',
+      products: 'GET /api/products',
+      stats: 'GET /api/stats'
+    }
+  });
+});
+
 // Health Check
 app.get('/api/health', async (req, res) => {
   let dbStatus = pool ? 'connected' : 'local-json';
